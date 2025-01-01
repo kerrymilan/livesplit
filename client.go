@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	logger = log.New(ioutil.Discard, "livesplit", log.LstdFlags)
+	logger = log.New(os.Stdout, "livesplit", log.LstdFlags)
 )
 
 func Log() *log.Logger {
