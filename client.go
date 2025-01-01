@@ -55,6 +55,7 @@ const (
 	getcurrentsplitname    = "getcurrentsplitname"
 	getprevioussplitname   = "getprevioussplitname"
 	getcurrenttimerphase   = "getcurrenttimerphase"
+	togglelayout           = "togglelayout"
 )
 
 type Client struct {
@@ -296,6 +297,14 @@ func (client *Client) GetCurrentTimerPhase() (TimerPhase, error) {
 		return "", err
 	}
 	return TimerPhase(s), nil
+}
+
+func (client *Client) OnToggleLayout(callback func(cmd []string) error) {
+	client.registerCallback(togglelayout, callback)
+}
+
+func (client *Client) ToggleLayout() error {
+	return client.cmd(togglelayout)
 }
 
 func DurationToString(t time.Duration) string {
